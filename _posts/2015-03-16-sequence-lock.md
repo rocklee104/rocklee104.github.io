@@ -11,9 +11,7 @@ Sequence lock,也就是所谓的顺序锁.在读写者模型中,为了让读者�
 sequence lock的名称来历.
 ## 顺序锁的定义
 **include/linux/seqlock.h**
-```cpp
-typedef struct {
-    unsigned sequence;
-    spinlock_t lock;
-} seqlock_t;
-```
+    typedef struct {
+        unsigned sequence;
+        spinlock_t lock;
+    } seqlock_t;
