@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Linux内核顺序锁分析
+published: true
 ---
 
 本文初步分析linux-2.6.28顺序锁实现机制.
@@ -11,7 +12,6 @@ Sequence lock,也就是所谓的顺序锁.在读写者模型中,为了让读者�
 sequence lock的名称来历.
 ## 顺序锁的定义
 **include/linux/seqlock.h**
-
     typedef struct {
         unsigned sequence;
         spinlock_t lock;
