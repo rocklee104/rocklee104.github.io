@@ -106,6 +106,7 @@ do {
 ```
 对于读者来说,不存在上锁和解锁,它只涉及到read\_seqbegin和read\_seqretry这两个函数.
 **\<include/linux/seqlock.h>**
+
 ```c
 static __always_inline unsigned read_seqbegin(const seqlock_t *sl)
 {
