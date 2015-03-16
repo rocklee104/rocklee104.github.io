@@ -124,3 +124,13 @@ repeat:
 	return ret;
 }
 ```
+**\<include/linux/seqlock.h>**
+
+```c
+static __always_inline int read_seqretry(const seqlock_t *sl, unsigned start)
+{
+	smp_rmb();
+
+	return (sl->sequence != start);
+}
+```
