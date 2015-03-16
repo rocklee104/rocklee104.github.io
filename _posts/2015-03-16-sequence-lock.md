@@ -55,6 +55,7 @@ sequence lock的名称来历.
 这部分的工作和静态初始化是一样的.
 ##写者的上锁和解锁
 - 上锁:
+
 **\<include/linux/seqlock.h>**
 
 ```c
