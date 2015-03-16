@@ -55,6 +55,14 @@ sequence lock的名称来历.
 ```
 这部分的工作和静态初始化是一样的.
 ##写者的上锁和解锁
+在实际的使用过程中,写者代码很可能是如下形式:
+
+```c
+write_seqlock(&lock);
+write_something();
+write_sequnlock(&lock);
+```
+接下来我们就来分析一下写者的上锁和解锁过程.
 - 上锁:
 
 **\<include/linux/seqlock.h>**
@@ -83,4 +91,3 @@ static inline void write_sequnlock(seqlock_t *sl)
 	spin_unlock(&sl->lock);
 }
 ```
-
