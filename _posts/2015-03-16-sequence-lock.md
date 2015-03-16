@@ -60,7 +60,7 @@ sequence lock的名称来历.
 ```c
 ...
 write_seqlock(&lock);
-write_something();
+write_sth();
 write_sequnlock(&lock);
 ...
 ```
@@ -95,3 +95,32 @@ static inline void write_sequnlock(seqlock_t *sl)
 }
 ```
 在更新sequence序列之前,调用smp\_wmb()保证写入的数据已经完成写入操作.最后调用spin_unlock完成写者顺序锁的解锁.
+##读者的操作
+上文分析了写者的上锁和解锁操作,接下来继续分析读者的操作.还是给出一个实际应用的例子:
+
+```c
+do {
+	seq = read_seqbegin(&lock);
+    read_sth();
+} while (read_seqretry(&lock, seq));
+```
+对于读者来说,不存在上锁和解锁,它只涉及到read_seqbegin和read_seqretry这两个函数.
+**\<include/linux/seqlock.h>**
+
+```c
+static __always_inline unsigned read_seqbegin(const seqlock_t *sl)
+{
+	unsigned ret;
+
+repeat:
+	ret = sl->sequence;
+	smp_rmb();
+	//sequence最低位为0才表示写入结束
+	if (unlikely(ret & 1)) {
+		cpu_relax();
+		goto repeat;
+	}
+
+	return ret;
+}
+```
