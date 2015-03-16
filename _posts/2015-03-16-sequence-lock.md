@@ -19,7 +19,7 @@ sequence lock的名称来历.
     } seqlock_t;
 这个unsigned类型的sequence用来进行递增计数,lock用来进行多个写者之间的互斥.
 ## 顺序锁的初始化
-- 静态初始化
+- 静态初始化:
 
 我在这里去掉了一些调试信息,保留了静态初始化中最核心的部分.
 **\<include/linux/seqlock_types.h>**
@@ -39,4 +39,30 @@ sequence lock的名称来历.
 #define DEFINE_SEQLOCK(x) \
 		seqlock_t x = __SEQLOCK_UNLOCKED(x)
 ```
-- 动态初始化
+以上可以看出顺序锁的初始化就是将sequence的值置0,以及初始化了spin_lock.
+- 动态初始化:
+
+如果要动态初始化一个seqlock_t变量,就需要调用seqlock_init了
+**\<include/linux/seqlock.h>**
+
+```c
+#define seqlock_init(x)					\
+	do {						\
+		(x)->sequence = 0;			\
+		spin_lock_init(&(x)->lock);		\
+	} while (0)
+```
+这部分的工作和静态初始化是一样的.
+##写者的上锁和解锁
+- 上锁:
+**\<include/linux/seqlock.h>**
+
+```c
+static inline void write_seqlock(seqlock_t *sl)
+{
+	//spin_lock能够保证smp环境下的数据同步
+	spin_lock(&sl->lock);
+	++sl->sequence;
+	smp_wmb();
+}
+```
