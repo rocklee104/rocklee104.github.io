@@ -63,6 +63,7 @@ write_something();
 write_sequnlock(&lock);
 ```
 接下来我们就来分析一下写者的上锁和解锁过程.
+
 - 上锁:
 
 **\<include/linux/seqlock.h>**
