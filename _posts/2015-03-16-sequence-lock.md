@@ -22,7 +22,7 @@ sequence lock的名称来历.
 - 静态初始化
 
 我在这里去掉了一些调试信息,保留了静态初始化中最核心的部分.
-**\<include/linux/seqlock.h>**
+**\<include/linux/seqlock_types.h>**
 ```c    
 # define __SPIN_LOCK_UNLOCKED(lockname) \
 	(spinlock_t)	{	.raw_lock = __RAW_SPIN_LOCK_UNLOCKED,	\
