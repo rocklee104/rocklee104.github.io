@@ -67,3 +67,19 @@ static inline void write_seqlock(seqlock_t *sl)
 	smp_wmb();
 }
 ```
+写入者在获取到spin_lock后就将sequence序列自加,sequence对写者没有什么实际作用,但是对读者来说,这就是判断读取的数据是否有效的重要依据.这里调用smp_wmb()设置了内存屏障,是为了保证在退出write_seqlock之前,squence一定是自加过的.
+
+- 解锁:
+
+**\<include/linux/seqlock.h>**
+
+```c
+static inline void write_sequnlock(seqlock_t *sl)
+{
+	smp_wmb();
+	//sequence & 0 == 0表示写入过程结束
+	sl->sequence++;
+	spin_unlock(&sl->lock);
+}
+```
+
