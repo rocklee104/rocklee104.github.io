@@ -124,6 +124,8 @@ repeat:
 	return ret;
 }
 ```
+这个函数用来第一次获取sequece,我们来看看它的实现.smp_rmb(),又是一个有意思的内存屏障,保证在if语句之前已经读取了sequence的值.这里的if判断sequence的最低位是否为1.如果是1,表示写者还没有退出临界区,这时候sequence的值是非常不可靠的.所以需要重新读取sequence直到所有的写者都退出临界区,这时才将读取到的sequence返回.
+
 **\<include/linux/seqlock.h>**
 
 ```c
@@ -134,3 +136,4 @@ static __always_inline int read_seqretry(const seqlock_t *sl, unsigned start)
 	return (sl->sequence != start);
 }
 ```
+我们回过头再看看读者的操作那个例子,在首次获取到可靠的sequence之后,进行读操作.由于读者和写者之间不是互斥的,在读者读取临界区内容的时候,写者很可能也在临界区操作,这时候读者在临界区中获取的内容不可靠,所以判断是否有写者操作过临界区就非常重要了.判断在读者读取临界区内容期间是否有写者操作临界区的方法就是再次判断sequence.内核屏障保证sequence读取的有序性.如果这次读者读取的sequence和首次读取的不一致,那么就说明在读者进行读操作的时候,有写者也进入了临界区,那么就需要进行读取sequence, 读取临界区内容, 判断读取内容的有效性这整个流程.
