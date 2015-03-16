@@ -94,3 +94,4 @@ static inline void write_sequnlock(seqlock_t *sl)
 	spin_unlock(&sl->lock);
 }
 ```
+在更新sequence序列之前,调用smp_wmb()保证写入的数据已经完成写入操作.最后调用spin_unlock完成写者顺序锁的解锁.
