@@ -11,7 +11,7 @@ Sequence lock,也就是所谓的顺序锁.在读写者模型中,为了让读者�
 临界区之后将一计数---sequence加1,在其退出临界区之后再次将sequence加1.Sequence序列只增加不减少,这就是
 sequence lock的名称来历.
 ## 顺序锁的定义
-**<include/linux/seqlock.h>**
+** <include/linux/seqlock.h> **
 
     typedef struct {
         unsigned sequence;
@@ -22,7 +22,7 @@ sequence lock的名称来历.
 - 静态初始化
 
 我在这里去掉了一些调试信息,保留了静态初始化中最核心的部分.
-**<include/linux/seqlock.h>**
+** <include/linux/seqlock.h> **
 
 ```c
 # define __SPIN_LOCK_UNLOCKED(lockname) \
