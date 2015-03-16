@@ -19,7 +19,8 @@ sequence lock的名称来历.
     } seqlock_t;
 这个unsigned类型的sequence用来进行递增计数,lock用来进行多个写者之间的互斥.
 ## 顺序锁的初始化
-- 静态初始化 -
+- 静态初始化
+
 我在这里去掉了一些调试信息,保留了静态初始化中最核心的部分.
 **<include/linux/seqlock.h>**
 
