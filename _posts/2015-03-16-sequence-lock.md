@@ -42,7 +42,7 @@ sequence lock的名称来历.
 以上可以看出顺序锁的初始化就是将sequence的值置0,以及初始化了spin_lock.
 - 动态初始化:
 
-如果要动态初始化一个seqlock_t变量,就需要调用seqlock_init了
+如果要动态初始化一个seqlock\_t变量,就需要调用seqlock_init了
 **\<include/linux/seqlock.h>**
 
 ```c
