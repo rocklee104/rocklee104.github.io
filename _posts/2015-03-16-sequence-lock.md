@@ -10,7 +10,6 @@ Sequence lock,也就是所谓的顺序锁.在读写者模型中,为了让读者�
 临界区之后将一计数---sequence加1,在其退出临界区之后再次将sequence加1.Sequence序列只增加不减少,这就是
 sequence lock的名称来历.
 ## 顺序锁的定义
-> **include/linux/seqlock.h**
     typedef struct {
         unsigned sequence;
         spinlock_t lock;
