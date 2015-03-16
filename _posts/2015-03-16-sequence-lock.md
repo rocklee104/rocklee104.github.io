@@ -58,9 +58,11 @@ sequence lock的名称来历.
 在实际的使用过程中,写者代码很可能是如下形式:
 
 ```c
+...
 write_seqlock(&lock);
 write_something();
 write_sequnlock(&lock);
+...
 ```
 接下来我们就来分析一下写者的上锁和解锁过程.
 
