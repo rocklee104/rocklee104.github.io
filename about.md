@@ -9,7 +9,7 @@ Rock Lee, a linux kernel newbie from China, is committed to linux kernel develop
 
 ### More Information
 
-This blog is used to share my study on linux, some snippets of my articles are gather from the Internet.All my articles are published under the GPL license.
+This blog is used to share my study on linux, some snippets of my articles are gather from the Internet. All my articles are published under the GPL license.
 
 ### Contact me
 
