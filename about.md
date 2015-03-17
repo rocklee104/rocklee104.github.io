@@ -7,7 +7,7 @@ published: true
 
 Rock Lee, a linux kernel newbie from China, is committed to linux kernel development since graduated from school.
 
-### More Information
+### Aoubt my blog
 
 This blog is used to share my study on linux, some snippets of my articles are gather from the Internet. All of my articles are published under the GPL license.
 
