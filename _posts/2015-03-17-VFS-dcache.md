@@ -8,7 +8,7 @@ published: true
 ## 1.dentry的状态
 dcache中的成员就是dentry, 在dcache中存在的dentry分为下面四种状态：
 
-- free:-
+- free
 处于该状态的目录项对象不包含有效的信息，还没有被VFS使用。它对应的内存区由slab分配器进行管理.
 
 - unused:
