@@ -40,11 +40,15 @@ dcache中的所有对象都通过d\_hash指针域连接到相应的哈希链表�
 这个版本的内核中，super block增加了两个成员用于管理LRU。
 
 ```c
+struct super_block {
+...
 /* s_dentry_lru and s_nr_dentry_unused are protected by dcache_lock */
 //管理当前文件系统中所有的未使用的dentry
 struct list_head	s_dentry_lru;	/* unused dentry lru */
 //当前文件系统中所有的未使用的dentry的计数
 int			s_nr_dentry_unused;	/* # of dentry on lru */
+...
+}
 ```
 
 <h2 id="3">3.相关API分析</h2>
