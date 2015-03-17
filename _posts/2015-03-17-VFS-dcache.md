@@ -37,7 +37,7 @@ dcache中所有处于unused和negative状态的dentry对象都通过其指针域
 
 <h2 id="3">3.相关API分析</h2>
 <h3 id="3.1">3.1 d_alloc</h3>
-##\<fs/dcache.c>##
+**\<fs/dcache.c>**
 
 ```c
 struct dentry *d_alloc(struct dentry * parent, const struct qstr *name)
@@ -46,7 +46,7 @@ struct dentry *d_alloc(struct dentry * parent, const struct qstr *name)
 
 <h3 id="3.2">3.2 d_add</h3>
 
-##\<include/linux/dcache.h>##
+**\<include/linux/dcache.h>**
 
 ```c
 static inline void d_add(struct dentry *entry, struct inode *inode)
@@ -58,7 +58,7 @@ static inline void d_add(struct dentry *entry, struct inode *inode)
 函数d\_instantiate的作用就是将dentry和inode关联起来。对于函数d\_rehash，
 其作用是将dentry放入hash表中。上文提到过，调用d\_alloc创建dentry的时候，dentry还没有加入hash表中，其d\_flags域的值为DCACHE\_UNHASHED。调用过d\_add之后，d\_flags域的值为~DCACHE\_UNHASHED。
 
-##\<fs/dcache.c>##
+**\<fs/dcache.c>**
 
 ```c
 static void __d_rehash(struct dentry * entry, struct hlist_head *list)
@@ -74,7 +74,7 @@ static void _d_rehash(struct dentry * entry)
 ```
 调用过d\_add函数的dentry，其状态就变成in use了。
 <h3 id="3.3">3.3 d_put</h3>
-##\<fs/dcache.c>##
+**\<fs/dcache.c>**
 
 ```c
 void dput(struct dentry *dentry)
