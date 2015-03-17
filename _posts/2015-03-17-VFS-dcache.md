@@ -6,7 +6,7 @@ published: true
 
 在linux的VFS中，dentry(directory entry)起了至关重要的作用。它将部分文件名保存在内存中。在查找文件名的时候减少了进行磁盘操作。提高了文件系统的性能。并且它将文件名和对应的文件inode关联起来，可以说dentry是文件名和对应文件内容的粘合剂。此外，linux目录树也是通过dentry组织起来的，可以说没有dentry就没有linux经典的树状目录结构。而这些dentry通过一些存储形式保存在系统的内存中，就组成了dcache(directory entry cache)。本文目前只关注linux-2.6.28的dcache。
 <h2 id="1">1.dentry的状态</h2>
-dcache中的成员就是dentry，在dcache中存在的dentry分为下面四种状态：
+在dcache中存在的dentry分为下面四种状态：
 
 - free:
 
