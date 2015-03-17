@@ -23,5 +23,17 @@ dcache中的成员就是dentry, 在dcache中存在的dentry分为下面四种状
 - negtive:
 
 与目录项相关的索引节点不复存在, 那是因为相应的磁盘索引节点已被删除, 该目录项对象的d\_inode是空的, 但该对象仍然被保存在目录项高速缓存中, 以便后续对同一文件目录名的查找操作能够快速完成.
+
+<h2 id="2">dcache的组成</h2>
+dcache主要由两个数据结构组成:
+
+- 哈希链表dentry_hashtable:
+
+dcache中的所有对象都通过d\_hash指针域连接到相应的哈希链表中。
+
+- 未使用的dentry对象链表dentry\_unused:
+
+dcache中所有处于unused和negative状态的dentry对象都通过其指针域d\_lru链接到dentry\_unused链表中，该链表也称为LRU链表。
+
       
 [1.dentry的状态](#1)
