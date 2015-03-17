@@ -36,7 +36,7 @@ dcache中的所有对象都通过d\_hash指针域连接到相应的哈希链表�
 dcache中所有处于unused和negative状态的dentry对象都通过其指针域d\_lru链接到dentry\_unused链表中，该链表也称为LRU链表。
 
 <h2 id="3">3.相关API分析</h2>
-<h2 id="3.1">3.1 d_alloc</h2>
+<h3 id="3.1">3.1 d_alloc</h3>
 ##\<fs/dcache.c>##
 
 ```c
@@ -44,7 +44,7 @@ struct dentry *d_alloc(struct dentry * parent, const struct qstr *name)
 ```
 当创建一个dentry的时候，就需要调用d\_alloc。这个函数通过kmem_cache_alloc给dentry分配空间，将dentry的使用计数d\_count初始化为1。由于刚创建的dentry还没有加入hash表，因此其d\_flags域的值为DCACHE_UNHASHED。刚创建完成的dentry属于free状态.
 
-<h2 id="3.2">3.2 d_add</h2>
+<h3 id="3.2">3.2 d_add</h3>
 
 ##\<include/linux/dcache.h>##
 
@@ -73,7 +73,7 @@ static void _d_rehash(struct dentry * entry)
 }
 ```
 调用过d\_add函数的dentry，其状态就变成in use了。
-<h2 id="3.3">3.3 d_put</h2>
+<h3 id="3.3">3.3 d_put</h3>
 ##\<fs/dcache.c>##
 
 ```c
