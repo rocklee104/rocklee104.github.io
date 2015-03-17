@@ -96,6 +96,6 @@ static void _d_rehash(struct dentry * entry)
 void dput(struct dentry *dentry)
 ```
 这个函数首先会减少dentry的引用计数。如果其引用计数为0，表示没有其他地方使用当前dentry了。这个时候就需要将这个dentry放到LRU链表中去。在将其链入LRU之前，还需要判断这个dentry是否还在hash表中，如果不在，就直接将其删除，如果在hash表中，就将其加入LRU链表起始处，并设置其d\_flags域为DCACHE_REFERENCED，表示这个dentry刚刚被使用过。这样一个处于in use状态的dentry就转变为unused状态了。
-![](、https://github.com/rocklee104/rocklee104.github.io/blob/master/images/dcache.png)
+![](../images/dcache.png)
 
 [1.dentry的状态](#1)
