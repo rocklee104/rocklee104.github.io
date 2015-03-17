@@ -33,7 +33,15 @@ dcache中的所有对象都通过d\_hash指针域连接到相应的哈希链表�
 
 - 未使用的dentry对象链表dentry\_unused:
 
-dcache中所有处于unused和negative状态的dentry对象都通过其指针域d\_lru链接到dentry\_unused链表中，该链表也称为LRU链表。
+在linux-2.6.18中，dcache中所有处于unused和negative状态的dentry对象都通过其指针域d\_lru链接到dentry\_unused链表中，该链表也称为LRU链表。
+而对于linux-2.6.28，则取消了这一全局LRU链表，取而代之的是每一个super block维护一个LRU链表。
+```c
+/* s_dentry_lru and s_nr_dentry_unused are protected by dcache_lock */
+//管理当前文件系统中所有的未使用的dentry
+struct list_head	s_dentry_lru;	/* unused dentry lru */
+//当前文件系统中所有的未使用的dentry的计数
+int			s_nr_dentry_unused;	/* # of dentry on lru */
+```
 
 <h2 id="3">3.相关API分析</h2>
 <h3 id="3.1">3.1 d_alloc</h3>
