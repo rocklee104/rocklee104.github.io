@@ -13,10 +13,12 @@ sequence lock的名称来历.
 ## 顺序锁的定义
 **\<include/linux/seqlock.h>**
 
-    typedef struct {
-        unsigned sequence;
-        spinlock_t lock;
-    } seqlock_t;
+```c
+typedef struct {
+	unsigned sequence;
+	spinlock_t lock;
+} seqlock_t;
+```
 这个unsigned类型的sequence用来进行递增计数,lock用来进行多个写者之间的互斥.
 ## 顺序锁的初始化
 - 静态初始化:
