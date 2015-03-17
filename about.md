@@ -5,7 +5,7 @@ permalink: /about/
 published: true
 ---
 
-Rock Lee, a linux kernel newbie from China, is committed to linux kernel development since graduated from school.
+Rock Lee, a linux kernel newbie from China, is committed to linux kernel development since graduated from college.
 
 ### About my blog
 
