@@ -72,7 +72,7 @@ static inline void d_add(struct dentry *entry, struct inode *inode)
 }
 ```
 函数d\_instantiate的作用就是将dentry和inode关联起来。对于函数d\_rehash，
-其作用是将dentry放入hash表中。上文提到过，调用d\_alloc创建dentry的时候，dentry还没有加入hash表中，其d\_flags域的值为DCACHE\_UNHASHED。调用过d\_add之后，d\_flags域的值为~DCACHE\_UNHASHED。
+其作用是将dentry放入hash表中。上文提到过，调用d\_alloc创建dentry的时候，dentry还没有加入hash表中，其d\_flags域的值为DCACHE\_UNHASHED。调用过d\_add之后，d\_flags域的值清除了DCACHE\_UNHASHED位。
 
 **\<fs/dcache.c>**
 
