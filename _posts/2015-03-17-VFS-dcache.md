@@ -27,9 +27,11 @@ dcache中的成员就是dentry, 在dcache中存在的dentry分为下面四种状
 <h2 id="2">dcache的组成</h2>
 dcache主要由两个数据结构组成:
 
+
 - 哈希链表dentry_hashtable:
 
-dcache中的所有对象都通过d\_hash指针域连接到相应的哈希链表中。
+dcache中的所有对象都通过d\_hash指针域连接到相应的哈希链表中.
+
 
 - 未使用的dentry对象链表dentry\_unused:
 
