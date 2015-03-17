@@ -42,7 +42,7 @@ dcache中所有处于unused和negative状态的dentry对象都通过其指针域
 ```c
 struct dentry *d_alloc(struct dentry * parent, const struct qstr *name)
 ```
-当创建一个dentry的时候，就需要调用d_alloc。这个函数通过kmem_cache_alloc给dentry分配空间，将dentry的使用计数d_count初始化为1。由于刚创建的dentry还没有加入hash表，因此其d_flags域的值为DCACHE_UNHASHED。刚创建完成的dentry属于free状态.
+当创建一个dentry的时候，就需要调用d\_alloc。这个函数通过kmem_cache_alloc给dentry分配空间，将dentry的使用计数d\_count初始化为1。由于刚创建的dentry还没有加入hash表，因此其d\_flags域的值为DCACHE_UNHASHED。刚创建完成的dentry属于free状态.
 
 <h2 id="3.2">3.2 d_add</h2>
 ##\<include/linux/dcache.h>##
@@ -54,7 +54,7 @@ static inline void d_add(struct dentry *entry, struct inode *inode)
 	d_rehash(entry);
 }
 ```
-函数d_instantiate的作用就是将dentry和inode关联起来。对于函数d_rehash，
-其作用是将dentry放入hash表中。上文提到过，调用d_alloc创建dentry的时候，dentry还没有加入hash表中，其d_flags域的值为DCACHE_UNHASHED。调用过d_add之后，d_flags域的值为~DCACHE_UNHASHED。
+函数d_instantiate的作用就是将dentry和inode关联起来。对于函数d\_rehash，
+其作用是将dentry放入hash表中。上文提到过，调用d\_alloc创建dentry的时候，dentry还没有加入hash表中，其d_flags域的值为DCACHE\_UNHASHED。调用过d\_add之后，d\_flags域的值为~DCACHE\_UNHASHED。
 
 [1.dentry的状态](#1)
