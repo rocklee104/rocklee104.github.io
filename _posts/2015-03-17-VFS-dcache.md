@@ -58,7 +58,7 @@ int			s_nr_dentry_unused;	/* # of dentry on lru */
 ```c
 struct dentry *d_alloc(struct dentry * parent, const struct qstr *name)
 ```
-当创建一个dentry的时候，就需要调用d\_alloc。这个函数通过kmem\_cache\_alloc给dentry分配空间，将dentry的使用计数d\_count初始化为1。由于刚创建的dentry还没有加入hash表，因此其d\_flags域的值为DCACHE_UNHASHED。刚创建完成的dentry属于free状态.
+当创建一个dentry的时候，就需要调用d\_alloc。这个函数通过kmem\_cache\_alloc给dentry分配空间，将dentry的使用计数d\_count初始化为1。由于刚创建的dentry还没有加入hash表，因此其d\_flags域值置位DCACHE_UNHASHED。刚创建完成的dentry属于free状态.
 
 <h3 id="3.2">3.2 d_add</h3>
 
