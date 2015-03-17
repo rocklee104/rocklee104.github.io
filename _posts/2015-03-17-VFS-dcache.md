@@ -73,5 +73,10 @@ static void _d_rehash(struct dentry * entry)
 ```
 调用过d_add函数的dentry，其状态就变成in use了。
 <h2 id="3.3">3.3 d_put</h2>
+##\<fs/dcache.c>##
+
+```c
+void dput(struct dentry *dentry)
+```
 
 [1.dentry的状态](#1)
