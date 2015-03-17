@@ -5,11 +5,11 @@ permalink: /about/
 published: true
 ---
 
-Rock Lee, a linux kernel newbie from China.
+Rock Lee, a linux kernel newbie from China, is committed to linux kernel development since graduated from school.
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+This blog is used to share my study on linux, some snippets of my articles are gather from the Internet.All my articles are published under the GPL license.
 
 ### Contact me
 
