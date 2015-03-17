@@ -35,6 +35,7 @@ dcache中的所有对象都通过d\_hash指针域连接到相应的哈希链表�
 
 在linux-2.6.18中，dcache中所有处于unused和negative状态的dentry对象都通过其指针域d\_lru链接到dentry\_unused链表中，该链表也称为LRU链表。
 
+
 而对于linux-2.6.28，则取消了这一全局LRU链表，取而代之的是每一个super block维护一个LRU链表。
 这个版本的内核中，super block增加了两个成员用于管理LRU。
 
