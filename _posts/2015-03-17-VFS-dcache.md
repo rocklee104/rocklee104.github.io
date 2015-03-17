@@ -89,7 +89,7 @@ static void _d_rehash(struct dentry * entry)
 }
 ```
 调用过d\_add函数的dentry，其状态就变成in use了。
-<h3 id="3.3">3.3 d_put</h3>
+<h3 id="3.3">3.3 dput</h3>
 **\<fs/dcache.c>**
 
 ```c
